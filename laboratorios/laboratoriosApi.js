@@ -1,5 +1,6 @@
 
 const express = require('express')
+const validacaoHorarios = require('../permissaoHorarios/permiteHorarios');
 
 const rotasLaboratorios = express()
 
@@ -16,7 +17,7 @@ const laboratoriosArray = [
     { "Nome": "lab6 Infor", "Capacidade": "20", "Descrição": "Laboratório 6 de Informatica" }
 ];
 
-rotasLaboratorios.get('/labs/todos', (req, res) => {
+rotasLaboratorios.get('/labs/todos', validacaoHorarios,(req, res) => {
     try {
         res.json(laboratoriosArray);
 
@@ -25,7 +26,7 @@ rotasLaboratorios.get('/labs/todos', (req, res) => {
     }
 })
 
-rotasLaboratorios.get('/labs/:Nome', (req, res) => {
+rotasLaboratorios.get('/labs/:Nome',validacaoHorarios, (req, res) => {
     try {
         let nomeLab = req.params.Nome;
         let labEncontrado = laboratoriosArray.find((n) => n.Nome == nomeLab);
@@ -42,7 +43,7 @@ rotasLaboratorios.get('/labs/:Nome', (req, res) => {
 })
 
 //Adicionar um novo laboratório
-rotasLaboratorios.post('/labs/novo', (req, res) => {
+rotasLaboratorios.post('/labs/novo',validacaoHorarios,(req, res) => {
     
     try {
         let novoLabNome = req.body;
@@ -59,8 +60,5 @@ rotasLaboratorios.post('/labs/novo', (req, res) => {
     }
 })
 
-//localhost:3000/labs/editar?id=2
 //rotasLaboratorios.listen(3003, () => (console.log('O servidor está rodando')))
-
-
 module.exports = rotasLaboratorios;
