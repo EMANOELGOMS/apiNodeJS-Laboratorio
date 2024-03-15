@@ -8,7 +8,7 @@ rotasLaboratorios.use(express.json()) // permite que os dados sejam enviado em f
 rotasLaboratorios.use(express.urlencoded({ extended: true })) // para poder usar  o req.body
 
 const laboratoriosArray = [
-    { "Nome": "lab1 Infor", "Capacidade": "12", "Descrição": "Laboratório 1 do Informatica" },
+    { "Nome": "lab1 Infor", "Capacidade": "12", "Descrição": "Laboratório 1 de Informatica" },
     { "Nome": "lab2 Infor", "Capacidade": "55", "Descrição": "Laboratório 2 de Informatica" },
     { "Nome": "lab3 Infor", "Capacidade": "30", "Descrição": "Laboratório 3 de Informatica" },
     { "Nome": "lab4 Infor", "Capacidade": "45", "Descrição": "Laboratório 4 de Informatica" },
@@ -66,7 +66,6 @@ rotasLaboratorios.post('/labs/novo', validacaoHorarios, (req, res) => {
 const fs = require('fs');
 var PDFDocument = require('pdfkit');
 
-
 rotasLaboratorios.get('/labs/relatorio/pdf', (req, res) => {
     try {
         // Criar um novo documento PDF
@@ -81,7 +80,7 @@ rotasLaboratorios.get('/labs/relatorio/pdf', (req, res) => {
 
         // Iterar sobre cada item no array de laboratórios e escrever no PDF
         laboratoriosArray.forEach((item, index) => {
-            doc.fontSize(10).text(`${index + 1}. ${item.Nome}: ${item.Capacidade} x ${item.Descrição}`);
+            doc.fontSize(10).text(`${index + 1}. ${item.Nome}: ${item.Capacidade} ${item.Descrição}`);
         });
         // Finalizar e enviar o PDF
         doc.end();
