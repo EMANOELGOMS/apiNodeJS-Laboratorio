@@ -17,6 +17,7 @@ const laboratoriosArray = [
     { "Nome": "lab6 Infor", "Capacidade": "20", "Descrição": "Laboratório 6 de Informatica" }
 ];
 
+// Traz todos os laboratorios cadastrados
 rotasLaboratorios.get('/labs/todos', validacaoHorarios,(req, res) => {
     try {
         res.json(laboratoriosArray);
@@ -26,6 +27,7 @@ rotasLaboratorios.get('/labs/todos', validacaoHorarios,(req, res) => {
     }
 })
 
+// Filtar por nome
 rotasLaboratorios.get('/labs/:Nome',validacaoHorarios, (req, res) => {
     try {
         let nomeLab = req.params.Nome;
