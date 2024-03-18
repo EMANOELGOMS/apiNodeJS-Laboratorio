@@ -17,7 +17,7 @@ const laboratoriosArray = [
 ];
 
 // Traz todos os laboratorios cadastrados
-rotasLaboratorios.get('/labs/todos', validacaoHorarios, (req, res) => {
+rotasLaboratorios.get('/laboratorio/todos', validacaoHorarios, (req, res) => {
     try {
         res.json(laboratoriosArray);
 
@@ -27,24 +27,24 @@ rotasLaboratorios.get('/labs/todos', validacaoHorarios, (req, res) => {
 })
 
 // Filtar por nome
-rotasLaboratorios.get('/labs/:Nome', validacaoHorarios, (req, res) => {
-    try {
-        let nomeLab = req.params.Nome;
-        let labEncontrado = laboratoriosArray.find((n) => n.Nome == nomeLab);
+// rotasLaboratorios.get('/laboratorio/:Nome', validacaoHorarios, (req, res) => {
+//     try {
+//         let nomeLab = req.params.Nome;
+//         let labEncontrado = laboratoriosArray.find((n) => n.Nome == nomeLab);
 
-        if (!labEncontrado) {
-            res.status(404).json({ msg: `O laboratório ${nomeLab} não encontrado` });
-        }
+//         if (!labEncontrado) {
+//             res.status(404).json({ msg: `O laboratório ${nomeLab} não encontrado` });
+//         }
 
-        res.json(labEncontrado);
+//         res.json(labEncontrado);
 
-    } catch (error) {
-        res.status(400).json({ message: 'Falha na requisição' })
-    }
-})
+//     } catch (error) {
+//         res.status(400).json({ message: 'Falha na requisição' })
+//     }
+// })
 
 //Adicionar um novo laboratório
-rotasLaboratorios.post('/labs/novo', validacaoHorarios, (req, res) => {
+rotasLaboratorios.post('/laboratorio/novo', validacaoHorarios, (req, res) => {
 
     try {
         let novoLabNome = req.body;
@@ -66,7 +66,7 @@ rotasLaboratorios.post('/labs/novo', validacaoHorarios, (req, res) => {
 const fs = require('fs');
 var PDFDocument = require('pdfkit');
 
-rotasLaboratorios.get('/labs/relatorio/pdf', (req, res) => {
+rotasLaboratorios.get('/laboratorio/relatorio', (req, res) => {
     try {
         // Criar um novo documento PDF
         const doc = new PDFDocument();
