@@ -8,5 +8,9 @@ const app = express();
 // http://localhost:3003/laboratorio/relatorio
 
 
+
+
 app.use(rotaDosLaboratorios)
-app.listen(3003, () =>{console.log('Servidou está rodando');} )
+
+app.listen(process.env.PORT || 3003,() =>{console.log("O servidor esta rodando");} )
+//app.listen(3003, () =>{console.log('Servidou está rodando');} )
